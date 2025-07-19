@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About Me - Deepak Kuraganti</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #eee;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 900px;
+    margin: 2rem auto;
+    background-color: rgba(0, 0, 30, 0.7);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    padding: 2rem;
+  }
+  h1, h2 {
+    text-align: center;
+    color: #ffd700;
+  }
+  .profile-pic {
+    display: block;
+    margin: 1rem auto;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 3px solid #ffd700;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  .profile-pic:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 15px #ffd700;
+  }
+  p {
+    line-height: 1.6;
+    font-size: 1.1rem;
+    margin: 1rem 0;
+  }
+  .skills {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 1.5rem 0;
+  }
+  .skill-badge {
+    background: #ffd700;
+    color: #111;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .skill-badge:hover {
+    background: #fff;
+    color: #555;
+    box-shadow: 0 4px 18px rgba(255, 215, 0, 0.8);
+  }
+  .contact-buttons {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+  .btn {
+    background-color: #ffd700;
+    color: #111;
+    border: none;
+    padding: 12px 28px;
+    margin: 0 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.9);
+  }
+  .toggle-info {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .hidden-info {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 1rem;
+    display: none;
+    font-size: 1rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>About Me - Deepak Kuraganti</h1>
+    <img src="https://avatars.githubusercontent.com/WalterWhite" alt="Profile Picture" class="profile-pic" title="Click to toggle more info" id="profilePic" />
+    <p>Driven by curiosity and a love for coding, I enjoy turning ideas into reality.</p>
+
+    <h2>Skills</h2>
+    <div class="skills" id="skillsContainer">
+      <span class="skill-badge" tabindex="0" title="Click to learn more about Python">Python</span>
+      <span class="skill-badge" tabindex="0" title="Click to learn more about JavaScript">JavaScript</span>
+    </div>
+
+    <div class="contact-buttons">
+      <a href="https://github.com/WalterWhite" target="_blank" class="btn" aria-label="View my GitHub profile">GitHub</a>
+      <a href="mailto:deepakkuraganti@gmail.com" class="btn" aria-label="Send me an Email">Email Me</a>
+    </div>
+
+    <div class="toggle-info">
+      <button id="toggleButton" class="btn" aria-expanded="false" aria-controls="extraInfo">More About Me</button>
+      <div id="extraInfo" class="hidden-info" role="region" aria-live="polite">
+        <p>Beyond code, you’ll often find me in a movie theatre, experimenting with photography, or lost in a playlist of my favorite music genres.</p>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // Toggle extra info visibility
+  const toggleBtn = document.getElementById('toggleButton');
+  const extraInfo = document.getElementById('extraInfo');
+  toggleBtn.addEventListener('click', () => {
+    const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+    toggleBtn.setAttribute('aria-expanded', !isExpanded);
+    if (isExpanded) {
+      extraInfo.style.display = 'none';
+    } else {
+      extraInfo.style.display = 'block';
+    }
+  });
+
+  // Profile image toggle same info
+  const profilePic = document.getElementById('profilePic');
+  profilePic.addEventListener('click', () => {
+    toggleBtn.click();
+  });
+
+  // Skill badges click to show alert with brief description
+  const skillsDescriptions = {
+    'Python': 'Proficient in scripting, automation, and data analysis.',
+    'JavaScript': 'Experienced in ES6+, DOM manipulation, and asynchronous programming.',
+  };
+  const skillsContainer = document.getElementById('skillsContainer');
+  skillsContainer.addEventListener('click', (e) => {
+    if (e.target.classList.contains('skill-badge')) {
+      alert(skillsDescriptions[e.target.textContent] || 'Skill info not available.');
+    }
+  });
+</script>
+</body>
+</html>
